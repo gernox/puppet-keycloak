@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily backup of Postgres database
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/gernox/keycloak_psql_backup.sh
+
+[Install]
+WantedBy=network.target

@@ -1,0 +1,8 @@
+[Unit]
+Description=Daily backup of Postgres database
+
+[Timer]
+OnCalendar=daily
+
+[Install]
+WantedBy=timers.target

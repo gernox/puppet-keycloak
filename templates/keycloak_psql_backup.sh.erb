@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -e
+
+DIRECTORY='/gernox/data/keycloak-postgres-backup/'
+DATE=$(date +%d-%m-%Y_%H_%M_%S)
+
+# Check directory
+if [ ! -d "$DIRECTORY" ]; then
+    mkdir -p $DIRECTORY
+fi
+
+# Remove older than 30 Days
+find $DIRECTORY -mtime +30 -type f -delete
+
+# Make sql dump
+/usr/bin/docker exec -t keycloak-postgres pg_dump -U <%= @db_user %> <%= @db_name %> > "${DIRECTORY}/${DATE}.psql"

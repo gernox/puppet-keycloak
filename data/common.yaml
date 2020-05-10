@@ -1,1 +1,4 @@
---- {}
+---
+gernox_keycloak::admin_user_name: admin
+gernox_keycloak::db_user: keycloak
+gernox_keycloak::db_name: keycloak
