@@ -68,5 +68,5 @@ class gernox_keycloak::server::run (
     depends               => [
       'keycloak-postgres',
     ],
-  }¹
+  }
 }
