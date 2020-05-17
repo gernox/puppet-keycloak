@@ -45,7 +45,13 @@ class gernox_keycloak::server::run (
   $network_name = 'keycloak-network'
 
   docker_network { $network_name:
-    ensure => present,
+    ensure  => present,
+    options => 'com.docker.network.bridge.name=br-keycloak',
+  }
+
+  firewall { '003 - IPv4: accept all br-keycloak':
+    iniface => 'br-keycloak',
+    action  => 'accept',
   }
 
   ::docker::run { 'keycloak-postgres':
