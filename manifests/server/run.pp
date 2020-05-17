@@ -44,7 +44,7 @@ class gernox_keycloak::server::run (
 
   $network_name = 'keycloak-network'
 
-  ::docker_network { $network_name:
+  docker_network { $network_name:
     ensure => present,
   }
 
