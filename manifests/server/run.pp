@@ -18,6 +18,7 @@
 # @param postgresql_version
 #
 class gernox_keycloak::server::run (
+  String $base_url           = $gernox_keycloak::base_url,
   Integer $http_port         = $gernox_keycloak::http_port,
 
   String $admin_user_name    = $gernox_keycloak::admin_user_name,
@@ -29,6 +30,8 @@ class gernox_keycloak::server::run (
 
   String $keycloak_version   = $gernox_keycloak::keycloak_version,
   String $postgresql_version = $gernox_keycloak::postgresql_version,
+
+  String $log_level          = $gernox_keycloak::log_level,
 ) {
   $docker_environment = [
     'DB_VENDOR=POSTGRES',
@@ -40,6 +43,9 @@ class gernox_keycloak::server::run (
     "KEYCLOAK_USER=${admin_user_name}",
     "KEYCLOAK_PASSWORD=${admin_password}",
     'PROXY_ADDRESS_FORWARDING=true',
+    "KEYCLOAK_FRONTEND_URL=${base_url}",
+    "KEYCLOAK_LOGLEVEL=${log_level}",
+    "ROOT_LOGLEVEL=${log_level}",
   ]
 
   $network_name = 'keycloak-network'

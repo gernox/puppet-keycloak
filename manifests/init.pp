@@ -1,6 +1,8 @@
 # @summary
 #   Manages a keycloak instance within docker
 #
+# @param base_url
+#
 # @param http_port
 #
 # @param admin_user_name
@@ -18,6 +20,7 @@
 # @param db_name
 #
 class gernox_keycloak (
+  String $base_url,
   Integer $http_port,
 
   String $admin_user_name,
@@ -29,6 +32,8 @@ class gernox_keycloak (
   String $db_user,
   String $db_password,
   String $db_name,
+
+  String $log_level,
 ) {
   contain ::gernox_docker
   contain ::gernox_keycloak::server::images
