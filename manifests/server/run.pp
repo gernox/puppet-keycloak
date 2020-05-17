@@ -49,7 +49,7 @@ class gernox_keycloak::server::run (
     options => 'com.docker.network.bridge.name=br-keycloak',
   }
 
-  firewall { '003 - IPv4: accept all br-keycloak':
+  firewall { '002 - IPv4: accept all br-keycloak':
     iniface => 'br-keycloak',
     action  => 'accept',
   }
