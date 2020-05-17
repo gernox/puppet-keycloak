@@ -32,7 +32,7 @@ class gernox_keycloak::server::run (
 ) {
   $docker_environment = [
     'DB_VENDOR=POSTGRES',
-    'DB_ADDR=db',
+    'DB_ADDR=keycloak-postgres',
     'DB_PORT=5432',
     "DB_DATABASE=${db_name}",
     "DB_USER=${db_user}",
