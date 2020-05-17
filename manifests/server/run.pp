@@ -42,18 +42,11 @@ class gernox_keycloak::server::run (
     'PROXY_ADDRESS_FORWARDING=true',
   ]
 
-  $network_name = 'keycloak-network'
-
-  docker_network { $network_name:
-    ensure => present,
-  }
-
   ::docker::run { 'keycloak-postgres':
     image                 => "postgres:${postgresql_version}",
     volumes               => [
       '/srv/docker/keycloak/postgresql/data:/var/lib/postgresql/data',
     ],
-    net                   => $network_name,
     health_check_interval => 30,
     env                   => [
       "POSTGRES_USER=${db_user}",
@@ -69,7 +62,6 @@ class gernox_keycloak::server::run (
     ports                 => [
       "${http_port}:8080",
     ],
-    net                   => $network_name,
     depends               => [
       'keycloak-postgres',
     ],
