@@ -64,7 +64,7 @@ class gernox_keycloak::server::run (
     env                   => $docker_environment,
     health_check_interval => 30,
     ports                 => [
-      "${http_port}:8080",
+      "127.0.0.1:${http_port}:8080",
     ],
     net                   => $network_name,
   }
